@@ -51,6 +51,9 @@ int main(int argc, char** argv) {
 
     while((bytes_read = read(sourcefd, &read_buf, BUF_SIZE)) > 0) {
         cakelog("Read [%ld] bytes from sourcefile", bytes_read);
+
+        // Check for nulls here
+
         bytes_written = write(destfd, &read_buf, bytes_read);
         cakelog("Written [%ld] bytes to destination file", bytes_written);
     }
