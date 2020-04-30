@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
     close(destfd);
 
     if (bytes_read < 0) {
-        cakelog("There was an error at some point while copy the files.");
+        cakelog("There was an error at some point while copying the files.");
         perror("file copy");
         cakelog_stop();
         exit(EXIT_FAILURE);
