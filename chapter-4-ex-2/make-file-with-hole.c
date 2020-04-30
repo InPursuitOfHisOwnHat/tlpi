@@ -4,19 +4,19 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "../../cakelog/cakelog.h"
+#include "../../../cakelog/cakelog.h"
 
 int main(int argc, char** argv) {
 
-    if (initialise_cakelog("filehole") != 0) {
+    if (cakelog_initialise("filehole") != 0) {
         printf("main() : error initialising logging. Fast fail.\n");
         exit(EXIT_FAILURE);
     }
 
     if ( argc < 2) {
         cakelog("Incorrect number of parameters passed ([%d]), terminating with EXIT_FAILURE", argc);
-        printf("Usage: filehole <filename> <size of hole in bytes>\n");
-        stop_cakelog();
+        printf("Usage: make-file-with-hole <filename> <size of hole in bytes>\n");
+        cakelog_stop();
         exit(EXIT_FAILURE);
     }
 
@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 
     if ( fd == -1 ) {
         perror("Create file");
-        stop_cakelog();
+        cakelog_stop();
         exit(EXIT_FAILURE);
     }
 
@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     ssize_t bytes_written = write(fd, "FHS", 3);
     if (bytes_written == -1){
         perror("Writing initial bytes to file");
-        stop_cakelog();
+        cakelog_stop();
         exit(EXIT_FAILURE);
     }
 
@@ -52,13 +52,13 @@ int main(int argc, char** argv) {
     ssize_t final_bytes_written = write(fd, "SHF", 3);
     if (final_bytes_written == -1){
         perror("Writing final bytes to file");
-        stop_cakelog();
+        cakelog_stop();
         exit(EXIT_FAILURE);
     }
     cakelog("Written final [%ld] bytes to file", final_bytes_written);
     cakelog("Done");
 
-    stop_cakelog();
+    cakelog_stop();
     close(fd);
     exit(EXIT_SUCCESS);
 }
