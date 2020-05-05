@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
-#include "../../../cakelog/cakelog.h"
+#include "../../cakelog/cakelog.h"
 
 #define BUF_SIZE 1024
 
