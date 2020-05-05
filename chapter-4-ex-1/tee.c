@@ -19,7 +19,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <getopt.h>
-#include "../../cakelog/cakelog.h"
+#include "cakelog/cakelog.h"
 
 #ifndef BUF_SIZE
 #define BUF_SIZE 1024

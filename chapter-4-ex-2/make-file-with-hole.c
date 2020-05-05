@@ -4,7 +4,7 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <errno.h>
-#include "../../../cakelog/cakelog.h"
+#include "cakelog/cakelog.h"
 
 int main(int argc, char** argv) {
 
