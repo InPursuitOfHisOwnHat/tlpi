@@ -7,6 +7,9 @@
 #include <sys/stat.h>
 #include "cakelog/cakelog.h"
 
+// The answer to this exercise is that if you open a file with O_APPEND, calls to write() will *always* append, even if you seek
+// to a different location before you write.
+
 int main(int argc, char** argv) {
 
     if (cakelog_initialise("append-seek") != 0) {
