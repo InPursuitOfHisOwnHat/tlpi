@@ -11,7 +11,7 @@
 // at the same time. This means the timestamps will match and one process will create the file then another will
 // attempt to create the same file. So we don't use it this time - just good old printf().
 
-// Without the O_APPEND flag the file is half the size. Presumably because the lseek/write operation is not atomic so the
+// Answer: Without the O_APPEND flag the file is half the size. Presumably because the lseek/write operation is not atomic so the
 // processes essentially write over each other. With the O_APPEND flag, Linux makes sure the write is completed to the
 // file before allowing any other process at it.
 
@@ -39,10 +39,12 @@ int main(int argc, char** argv) {
     }
 
     char byte_to_write='X';
+
     ssize_t bytes_written;
     ssize_t total_bytes_written = 0;
 
     for (long i=0; i<num_bytes; i++) {
+
         if (append_flag) {
             int seekres = lseek(fd, 0, SEEK_END);
             if (seekres == -1) {
@@ -50,6 +52,7 @@ int main(int argc, char** argv) {
                 perror("lseek()");
             }
         }
+
         bytes_written = write(fd, &byte_to_write, 1);
 
         if (bytes_written != 1) {
@@ -61,8 +64,8 @@ int main(int argc, char** argv) {
     }
 
     close(fd);
+
     printf("Written [%ld] bytes to [%s]\n", total_bytes_written, argv[1]);
-    
 
 }
 
