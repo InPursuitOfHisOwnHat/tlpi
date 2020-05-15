@@ -6,3 +6,5 @@ chapter-4-ex-2/.vscode/c_cpp_properties.json
 chapter-4-ex-2/.vscode/launch.json
 chapter-4-ex-2/.vscode/tasks.json
 chapter-5-ex-2/open-with-append-seek
+.vscode/launch.json
+.vscode/tasks.json
